@@ -16,7 +16,7 @@ public class Aiguillage extends Jonction{
 	}
 
 	
-	Rail getSuivant(Rail r) {
+	public Rail getSuivant(Rail r) {
 		if(r!=null && !amont.isEmpty() && !aval.isEmpty())
 		{
 			if(amont.contains(r))

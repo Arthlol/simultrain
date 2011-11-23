@@ -2,22 +2,29 @@ package train;
 
 import voie.Jonction;
 import voie.Rail;
+import voie.Troncon;
 
 public class EtatTrain {
         Rail monRail;
-	int position,sensDeplacement,vitesseCourante;
-	
+	int sensDeplacement,vitesseCourante;
+	Troncon position;
         
-	EtatTrain(int laPosition, int leSensDepalcement, int laVitesseCourante)
+	public EtatTrain(Rail r,Troncon laPosition, int leSensDepalcement, int laVitesseCourante)
 	{
+		monRail=r;
 		position=laPosition;
 		sensDeplacement=leSensDepalcement;
 		vitesseCourante=laVitesseCourante;
 	}
         
-        public void avancer(int nbTroncons)
+        public void avancer(Train t)
         {
-            monRail=monRail.avance(vitesseCourante,position,sensDeplacement);
+            monRail=monRail.avance(vitesseCourante,position,sensDeplacement,t);
         }
-
+        
+     public String toString()
+     {
+    	 return "ETAT TRAINT : \n Troncon : "+(position!=null)+ "\n Rail : "+(monRail!=null)+ "\n sens : "+sensDeplacement+" \n Vitesse :"+vitesseCourante;
+     }
+        
 }

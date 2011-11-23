@@ -7,7 +7,7 @@ import train.Train;
 public class Troncon {
 	ArrayList<Capteur> sesCapteurs;
 	
-	Troncon(ArrayList<Capteur> capteurs) {
+	public Troncon(ArrayList<Capteur> capteurs) {
 		if(capteurs!=null) {
 			sesCapteurs=(ArrayList<Capteur>) capteurs.clone();
 		}else{
@@ -17,9 +17,13 @@ public class Troncon {
         
         public void active(Train t)
         {
-            for(Capteur e : sesCapteurs)
-            {
-                e.setValeur(t);
-            }
+        	if(sesCapteurs!=null)
+        	{
+        		 for(Capteur e : sesCapteurs)
+                 {
+                     e.setValeur(t);
+                 }
+        	}
+           
         }
 }
