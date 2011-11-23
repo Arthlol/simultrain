@@ -2,7 +2,7 @@ package voie;
 
 public abstract class Jonction extends ElementVoie{
 
-	Jonction(int longueur)
+	public Jonction(int longueur)
 	{
 		super(longueur);
 	}

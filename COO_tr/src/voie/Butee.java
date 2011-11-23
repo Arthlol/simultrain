@@ -10,7 +10,7 @@ public class Butee extends Jonction{
 		monRail=r;
 	}
 	
-	Rail getSuivant(Rail p) {
+	public Rail getSuivant(Rail p) {
 		System.out.println(" Est en Butee");
 		return null;
 	}

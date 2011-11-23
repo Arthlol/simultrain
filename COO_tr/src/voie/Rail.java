@@ -9,12 +9,13 @@ public class Rail extends ElementVoie{
 	ArrayList<Troncon> sesTroncons;
 	
 	
-	Rail(int longueur,Jonction j1,Jonction j2, ArrayList<Troncon> troncons)
+	public Rail(int longueur,Jonction j1,Jonction j2, ArrayList<Troncon> troncons)
 	{
 		super(longueur);
 		sesTroncons = (ArrayList<Troncon>) troncons.clone();
 		saJonction1=j1;
 		saJonction2=j2;
+		System.out.println(sesTroncons.size());
 	}   
         
         public Rail avance(int nbTroncon,Troncon currentTroncon,int sens,Train t)
@@ -25,13 +26,13 @@ public class Rail extends ElementVoie{
                 if(sens==1){
                     currentPosition=0;
                 }else{
-                    currentPosition=sesTroncons.size();
+                    currentPosition=sesTroncons.size()-1;
                 }
             }else{
                 currentPosition=sesTroncons.indexOf(currentTroncon);
             }
             
-            
+            System.out.println(currentPosition);
             
             
             switch(sens){
@@ -51,7 +52,7 @@ public class Rail extends ElementVoie{
                         sesTroncons.get(i).active(t);
                     }
                     if(-nbTroncon+currentPosition<0){
-                        return getSuivant(saJonction2).avance(nbTroncon-(sesTroncons.size()-currentPosition),null, sens,t);
+                        return getSuivant(saJonction2).avance(nbTroncon-(currentPosition),null, sens,t);
                     }
                     return this;
                    
@@ -80,6 +81,21 @@ public class Rail extends ElementVoie{
 			}
 		}
 		return null; //Cas d'erreur
+	}
+
+	public Troncon getTroncon(int i) {
+		
+		return sesTroncons.get(i);
+	}
+	
+	public void setJ1(Jonction j)
+	{
+		saJonction1=j;
+	}
+	
+	public void setJ2(Jonction j)
+	{
+		saJonction2=j;
 	}
 	
 }

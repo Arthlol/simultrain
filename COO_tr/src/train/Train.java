@@ -7,7 +7,7 @@ public class Train {
 	EtatTrain monEtat;
 	
 	
-	Train(int id, int size, int vitesse,EtatTrain etat)
+	public Train(int id, int size, int vitesse,EtatTrain etat)
 	{
 		identifiant=id;
 		taille=size;
@@ -27,9 +27,14 @@ public class Train {
 		monEtat.vitesseCourante=v;
 	}
 
-        public void avancer(int nbTroncons)
+        public void avancer()
         {
-            monEtat.monRail.avance(monEtat.vitesseCourante,monEtat.position,monEtat.sensDeplacement);
+            monEtat.avancer(this);
         }
 	
+        
+        public String toString()
+        {
+        	return monEtat.toString();
+        }
 }
