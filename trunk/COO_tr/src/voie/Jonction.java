@@ -7,6 +7,6 @@ public abstract class Jonction extends ElementVoie{
 		super(longueur);
 	}
 	
-	abstract Rail getSuivant(Rail r);
+	public abstract Rail getSuivant(Rail r);
 	
 }

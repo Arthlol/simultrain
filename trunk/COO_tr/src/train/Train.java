@@ -27,6 +27,9 @@ public class Train {
 		monEtat.vitesseCourante=v;
 	}
 
-
+        public void avancer(int nbTroncons)
+        {
+            monEtat.monRail.avance(monEtat.vitesseCourante,monEtat.position,monEtat.sensDeplacement);
+        }
 	
 }
