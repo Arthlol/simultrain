@@ -2,6 +2,7 @@ package voie;
 
 import java.util.ArrayList;
 import capteur.Capteur;
+import train.Train;
 
 public class Troncon {
 	ArrayList<Capteur> sesCapteurs;
@@ -13,4 +14,12 @@ public class Troncon {
 			sesCapteurs=null;
 		}
 	}
+        
+        public void active(Train t)
+        {
+            for(Capteur e : sesCapteurs)
+            {
+                e.setValeur(t);
+            }
+        }
 }
