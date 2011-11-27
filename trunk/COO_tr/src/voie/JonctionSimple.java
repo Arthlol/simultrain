@@ -2,7 +2,13 @@ package voie;
 
 public class JonctionSimple extends Jonction{
 
-	Rail r1,r2;
+	
+	
+	public JonctionSimple()
+	{
+		super(0);
+	}
+	
 	
 	public JonctionSimple(Rail rail1,Rail rail2) {
 		super(0);
@@ -16,19 +22,17 @@ public class JonctionSimple extends Jonction{
 		{
 			if(r==r1)
 			{
+				//System.out.print(" \t SORTIE R2 \n");
 				return r2;
-			}
-			else if(r==r2)
-			{
-				return r1;
 			}
 			else
 			{
-				return null;
+				
+				return r1;
 			}
 		}
 		
-		
+		System.out.println(" Jonction cible est NULL");
 		return null;
 	}
 	public void setR1(Rail r)

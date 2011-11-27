@@ -1,5 +1,7 @@
 package train;
 
+import voie.Troncon;
+
 public class Train {
 	private int identifiant;
 	int taille;
@@ -37,4 +39,15 @@ public class Train {
         {
         	return monEtat.toString();
         }
+
+
+		public void setPosition(Troncon currentTroncon) {
+			monEtat.position=currentTroncon;
+			
+		}
+		
+		public EtatTrain monEtat()
+		{
+			return  monEtat;
+		}
 }

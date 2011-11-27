@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Aiguillage extends Jonction{
 
 	ArrayList<Rail> amont,aval;
-	Rail selectedAmont,selectedAval;
+	
 	
 	
 	Aiguillage(int longueur,ArrayList<Rail>monAmont,ArrayList<Rail>monAval) {
@@ -21,10 +21,10 @@ public class Aiguillage extends Jonction{
 		{
 			if(amont.contains(r))
 			{
-				return selectedAval;
+				return r1;
 			}else if(aval.contains(r))
 			{
-				return selectedAmont;
+				return r2;
 			}else{
 				System.out.println(" Aiguillage - Erreur suivant "); // cas d'erreur 
 				return null; 
@@ -37,7 +37,7 @@ public class Aiguillage extends Jonction{
 	void changeAval(int index)
 	{
 		if(index<aval.size()&&index>-1){
-			selectedAval=aval.get(index);
+			r1=aval.get(index);
 		}
 		else{
 			// cas d'erreur
@@ -48,7 +48,7 @@ public class Aiguillage extends Jonction{
 	void changeAmont(int index)
 	{
 		if(index<amont.size()&&index>-1){
-			selectedAmont=amont.get(index);
+			r2=amont.get(index);
 		}
 		else{
 			// cas d'erreur

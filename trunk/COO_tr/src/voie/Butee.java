@@ -2,12 +2,13 @@ package voie;
 
 public class Butee extends Jonction{
 
-	Rail monRail;
+	
 	
 	Butee(Rail r, int longueur)
 	{
 		super(longueur);
-		monRail=r;
+		super.r1=r;
+		super.r2=null;
 	}
 	
 	public Rail getSuivant(Rail p) {
