@@ -24,7 +24,11 @@ public class EtatTrain {
         
      public String toString()
      {
-    	 return "ETAT TRAINT : \n Troncon : "+(position!=null)+ "\n Rail : "+(monRail!=null)+ "\n sens : "+sensDeplacement+" \n Vitesse :"+vitesseCourante;
+    	 return "\n ETAT TRAINT : \t Troncon : "+(position!=null)+ "\t Rail : "+(monRail!=null)+ "\t sens : "+sensDeplacement+" \t Vitesse :"+vitesseCourante;
      }
         
+     public Rail getRail()
+     {
+    	 return monRail;
+     }
 }
