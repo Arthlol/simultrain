@@ -46,7 +46,7 @@ public class Rail extends ElementVoie{
                 case 1:
                     for(int i=currentPosition;i<sesTroncons.size();i++)
                     {
-                        sesTroncons.get(i).active(t);
+                        sesTroncons.get(i).active(t,1);
                     }
                     if(nbTroncon+currentPosition>sesTroncons.size()-1){
                     	if(getSuivant(saJonction1)== null){
@@ -62,7 +62,7 @@ public class Rail extends ElementVoie{
                 case -1:
                     for(int i=currentPosition;i>=0;i--)
                     {
-                        sesTroncons.get(i).active(t);
+                        sesTroncons.get(i).active(t,2);
                     }
                     if(-nbTroncon+currentPosition<0){
                     	if(getSuivant(saJonction2)== null){

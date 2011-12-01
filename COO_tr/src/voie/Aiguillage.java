@@ -56,4 +56,13 @@ public class Aiguillage extends Jonction{
 		}
 	}
 
+	public Rail getAval()
+	{
+		return r1;
+	}
+	
+	public Rail getAmont()
+	{
+		return r2;
+	}
 }
