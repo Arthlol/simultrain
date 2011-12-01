@@ -13,7 +13,7 @@ public abstract class Semaphore {
 		etat=n;
 	}
 	
-	abstract void modifTrain(Train t);
-	
+	public abstract void modifTrain(Train t);
+	public void reset(){ etat=1;}
 
 }

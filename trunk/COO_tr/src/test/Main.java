@@ -1,11 +1,13 @@
 package test;
 
 import java.util.ArrayList;
+import signalisation.Semaphore;
 
 import capteur.Capteur;
 import capteur.CapteurPresence;
 import capteur.CapteurVitesse;
 
+import signalisation.Attente;
 import train.EtatTrain;
 import train.Train;
 import voie.Jonction;
@@ -43,12 +45,23 @@ public class Main {
 					ArrayList<Capteur> mesCapteur=new ArrayList<Capteur>(); 
 					mesCapteur.add(new CapteurPresence());
 					mesCapteur.add(new CapteurVitesse());
-					lesTroncons.add(new Troncon(mesCapteur));
+					
+					lesTroncons.add(new Troncon(mesCapteur,null,null));
 				}else{
-					lesTroncons.add(new Troncon(null));
+					lesTroncons.add(new Troncon(null,null,null));
 				}
-				
+				if(Math.random()<0.1 && j==0){
+					ArrayList<Semaphore> mesSemaphore= new ArrayList<Semaphore>();
+					mesSemaphore.add(new Attente(4));
+					lesTroncons.add(new Troncon(null,null,mesSemaphore));
+				}
+				if(Math.random()<0.1 && j==4+(5+i*8)%40){
+					ArrayList<Semaphore> mesSemaphore= new ArrayList<Semaphore>();
+					mesSemaphore.add(new Attente(4));
+					lesTroncons.add(new Troncon(null,mesSemaphore,null));
+				}
 			}
+			
 			mesRails[i]=new Rail((i*7)%16,mesJonctions[(i)%50],mesJonctions[(1+i)%50],(ArrayList<Troncon>)lesTroncons.clone() );
 			
 
@@ -82,22 +95,22 @@ public class Main {
 		
 		System.out.println("SUCCESS - Creation Rail et Jonction ");
 		
-		t1=new Train(0, 5, 15, new EtatTrain(mesRails[30],mesRails[30].getTroncon(0),1,1));
-		t2=new Train(1, 15, 10, new EtatTrain(mesRails[10],mesRails[10].getTroncon(0),-1,1));
-		t3=new Train(2, 3, 20, new EtatTrain(mesRails[20],mesRails[20].getTroncon(0),1,1));
+		t1=new Train(0, 5, 15, new EtatTrain(mesRails[30],mesRails[30].getTroncon(0),1,15));
+		t2=new Train(1, 15, 10, new EtatTrain(mesRails[10],mesRails[10].getTroncon(0),-1,5));
+		t3=new Train(2, 3, 20, new EtatTrain(mesRails[20],mesRails[20].getTroncon(0),1,10));
 		
 		System.out.println("SUCCESS - Creation ");
 		int i=1;
 		while(true)
 		{
-			System.out.println("\n ------------------"+i+"------------ ");
-			System.out.println(t1+"  NUM RAIL"+(getNumeroRail(t1,mesRails)));
+			//System.out.println("\n ------------------"+i+"------------ ");
+			//System.out.println(t1+"  NUM RAIL"+(getNumeroRail(t1,mesRails)));
 			t1.avancer();
 			
-			System.out.println(t2+"  NUM RAIL"+(getNumeroRail(t2,mesRails)));
+			//System.out.println(t2+"  NUM RAIL"+(getNumeroRail(t2,mesRails)));
 			t2.avancer();
 			
-			System.out.println(t3+"  NUM RAIL"+(getNumeroRail(t3,mesRails)));
+			//System.out.println(t3+"  NUM RAIL"+(getNumeroRail(t3,mesRails)));
 			t3.avancer();
 			
 			i++;
