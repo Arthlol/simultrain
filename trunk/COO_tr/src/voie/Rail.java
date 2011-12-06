@@ -38,7 +38,7 @@ public class Rail extends ElementVoie{
                 
                 
             }
-            
+           
             //System.out.print("\t Pactuel \t"+currentPosition+" \n");
             
             
@@ -49,9 +49,13 @@ public class Rail extends ElementVoie{
                         sesTroncons.get(i).active(t,1);
                     }
                     if(nbTroncon+currentPosition>sesTroncons.size()-1){
+                    	if(saJonction1== null){
+                    		System.out.print("\n JONCTION NULL");
+                    	}
                     	if(getSuivant(saJonction1)== null){
                     		System.out.print("\n QUELQUE CHOSE DE NULL");
                     	}
+                    	
                         return getSuivant(saJonction1).avance(nbTroncon-(sesTroncons.size()-currentPosition),null, 1, t);
                     }
                     currentTroncon=sesTroncons.get(currentPosition+nbTroncon);
@@ -68,7 +72,10 @@ public class Rail extends ElementVoie{
                     	if(getSuivant(saJonction2)== null){
                     		System.out.print("\n QUELQUE CHOSE DE NULL");
                     	}
-                    	
+                    	if(saJonction2==null)
+                    	{
+                    		System.out.println(" JONCTION NULLE ");
+                    	}
                         return getSuivant(saJonction2).avance(nbTroncon-(currentPosition),null, -1,t);
                     }
                     return this;
@@ -103,7 +110,7 @@ public class Rail extends ElementVoie{
 
 	public Troncon getTroncon(int i) {
 		
-		return sesTroncons.get(i);
+		return sesTroncons.size()>i ? sesTroncons.get(i) :  null;
 	}
 	
 	public void setJ1(Jonction j)

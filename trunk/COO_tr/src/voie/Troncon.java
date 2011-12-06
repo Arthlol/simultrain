@@ -61,4 +61,14 @@ public class Troncon {
         	}
            
         }
+        
+        public Semaphore getSemaphore()
+        {
+        	return (sesSemaphoresS1.isEmpty() ? null : sesSemaphoresS1.get(0));
+        }
+        public Capteur getCapteurs()
+        {
+        	return (sesCapteurs.isEmpty() ? null : sesCapteurs.get(0));
+        }
+        
 }

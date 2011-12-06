@@ -6,9 +6,8 @@ public class Butee extends Jonction{
 	
 	Butee(Rail r, int longueur)
 	{
-		super(longueur);
-		super.r1=r;
-		super.r2=null;
+		super(longueur,r,null);
+		
 	}
 	
 	public Rail getSuivant(Rail p) {

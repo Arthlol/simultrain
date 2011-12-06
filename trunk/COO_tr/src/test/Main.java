@@ -37,32 +37,9 @@ public class Main {
 		for(int i=0;i<50;i++)
 		{
 			
-			ArrayList<Troncon> lesTroncons=new ArrayList<Troncon>();
-			for(int j=0;j<5+(5+i*8)%40;j++)
-			{
-				if(Math.random()<0.01)
-				{
-					ArrayList<Capteur> mesCapteur=new ArrayList<Capteur>(); 
-					mesCapteur.add(new CapteurPresence());
-					mesCapteur.add(new CapteurVitesse());
-					
-					lesTroncons.add(new Troncon(mesCapteur,null,null));
-				}else{
-					lesTroncons.add(new Troncon(null,null,null));
-				}
-				if(Math.random()<0.1 && j==0){
-					ArrayList<Semaphore> mesSemaphore= new ArrayList<Semaphore>();
-					mesSemaphore.add(new Attente(4));
-					lesTroncons.add(new Troncon(null,null,mesSemaphore));
-				}
-				if(Math.random()<0.1 && j==4+(5+i*8)%40){
-					ArrayList<Semaphore> mesSemaphore= new ArrayList<Semaphore>();
-					mesSemaphore.add(new Attente(4));
-					lesTroncons.add(new Troncon(null,mesSemaphore,null));
-				}
-			}
 			
-			mesRails[i]=new Rail((i*7)%16,mesJonctions[(i)%50],mesJonctions[(1+i)%50],(ArrayList<Troncon>)lesTroncons.clone() );
+			
+			mesRails[i]=new Rail((i*7)%16,mesJonctions[(i)%50],mesJonctions[(1+i)%50],getTroncon());
 			
 
 		}
@@ -104,13 +81,13 @@ public class Main {
 		while(true)
 		{
 			//System.out.println("\n ------------------"+i+"------------ ");
-			//System.out.println(t1+"  NUM RAIL"+(getNumeroRail(t1,mesRails)));
+			System.out.println(t1+"  NUM RAIL"+(getNumeroRail(t1,mesRails)));
 			t1.avancer();
 			
-			//System.out.println(t2+"  NUM RAIL"+(getNumeroRail(t2,mesRails)));
+			System.out.println(t2+"  NUM RAIL"+(getNumeroRail(t2,mesRails)));
 			t2.avancer();
 			
-			//System.out.println(t3+"  NUM RAIL"+(getNumeroRail(t3,mesRails)));
+			System.out.println(t3+"  NUM RAIL"+(getNumeroRail(t3,mesRails)));
 			t3.avancer();
 			
 			i++;
@@ -133,4 +110,59 @@ public class Main {
 		return -1;
 	}
 	
+	public static Rail[] creerRail(int taille)
+	{
+		Rail[] tabRail=new Rail[taille];
+		JonctionSimple[] mesJ= new JonctionSimple[taille-1];
+		for(int i=0;i<taille-1;i++)
+		{
+			mesJ[i]=new JonctionSimple(null,null);
+		}
+		for(int i=1;i<taille-1;i++)
+		{
+			tabRail[i]=new Rail((i*3+taille)%20, mesJ[i-1],mesJ[i],getTroncon() );
+		}
+		System.out.println(" "+(taille-1));
+		
+tabRail[0]=new Rail((int) ((Math.random()*3+taille)%20),null,mesJ[0],getTroncon());
+		
+		tabRail[taille-1]=new Rail((int) ((Math.random()*3+taille)%20),mesJ[taille-2],null,getTroncon());
+		for(int i=0;i<taille-1;i++)
+		{
+			mesJ[i].setR1(tabRail[i]);
+			mesJ[i].setR2(tabRail[i+1]);
+		}
+		
+		return tabRail;
+	}
+	
+	
+	public static ArrayList<Troncon> getTroncon()
+	{ int i=(int) Math.random();
+		ArrayList<Troncon> lesTroncons=new ArrayList<Troncon>();
+		for(int j=0;j<5+(5+i*8)%40;j++)
+		{
+			if(Math.random()<0.01)
+			{
+				ArrayList<Capteur> mesCapteur=new ArrayList<Capteur>(); 
+				mesCapteur.add(new CapteurPresence());
+				mesCapteur.add(new CapteurVitesse());
+				
+				lesTroncons.add(new Troncon(mesCapteur,null,null));
+			}else{
+				lesTroncons.add(new Troncon(null,null,null));
+			}
+			if(Math.random()<0.1 && j==0){
+				ArrayList<Semaphore> mesSemaphore= new ArrayList<Semaphore>();
+				mesSemaphore.add(new Attente(4));
+				lesTroncons.add(new Troncon(null,null,mesSemaphore));
+			}
+			if(Math.random()<0.1 && j==4+(5+i*8)%40){
+				ArrayList<Semaphore> mesSemaphore= new ArrayList<Semaphore>();
+				mesSemaphore.add(new Attente(4));
+				lesTroncons.add(new Troncon(null,mesSemaphore,null));
+			}
+		}
+		return lesTroncons;
+	}
 }
