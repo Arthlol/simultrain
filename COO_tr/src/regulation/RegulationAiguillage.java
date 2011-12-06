@@ -18,8 +18,41 @@ public class RegulationAiguillage extends ElementRegulation{
 	ArrayList<Semaphore> avalSemaphore,amontSemaphore;
 	ArrayList <Entry<Capteur,Rail>> correspondance;
 	
-	public RegulationAiguillage()
+	public RegulationAiguillage(Aiguillage a)
 	{
+		avalCapteur=new ArrayList<Capteur>();
+		amontCapteur=new ArrayList<Capteur>();
+		avalSemaphore=new ArrayList<Semaphore>();
+		amontSemaphore=new ArrayList<Semaphore>();
+		for(Rail e :a.getAllAmont())
+		{
+			int i=0;
+			while(e.getTroncon(i) != null )
+			{
+				if(e.getTroncon(i).getCapteurs()!=null || e.getTroncon(i).getSemaphore()!=null )
+				{
+					amontCapteur.add(e.getTroncon(i).getCapteurs());
+					amontSemaphore.add(e.getTroncon(i).getSemaphore());
+					i=-2;
+				}
+				i++;
+			}
+		}
+		
+		for(Rail e :a.getAllAval())
+		{
+			int i=0;
+			while(e.getTroncon(i) != null )
+			{
+				if(e.getTroncon(i).getCapteurs()!=null || e.getTroncon(i).getSemaphore()!=null )
+				{
+					avalCapteur.add(e.getTroncon(i).getCapteurs());
+					avalSemaphore.add(e.getTroncon(i).getSemaphore());
+					i=-2;
+				}
+				i++;
+			}
+		}
 		
 	}
 	

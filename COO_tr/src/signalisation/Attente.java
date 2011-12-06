@@ -18,14 +18,14 @@ public class Attente extends Semaphore{
 		{
 			duree=dureeMAx;
 			etat=0; // le feu s'eteind
-			System.out.println("--- LE TRAIN REPART ---");
+			//System.out.println("--- LE TRAIN REPART ---");
 			return true; // le train repart
 		}
 		else
 		{
 			duree--;
 			etat=1;
-			System.out.println("--- LE TRAIN ATTEND ---");
+			//System.out.println("--- LE TRAIN ATTEND ---");
 			
 			return false; // le train attend
 		}
@@ -33,7 +33,7 @@ public class Attente extends Semaphore{
 	}
 	
 	public void modifTrain(Train t) {
-		
+		/*
 		if(etat==1)
 		{
 			if( action())
@@ -51,6 +51,6 @@ public class Attente extends Semaphore{
 			
 			
 		}
-		
+		*/
 	}
 }

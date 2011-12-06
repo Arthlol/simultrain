@@ -4,16 +4,12 @@ public class JonctionSimple extends Jonction{
 
 	
 	
-	public JonctionSimple()
-	{
-		super(0);
-	}
+	
 	
 	
 	public JonctionSimple(Rail rail1,Rail rail2) {
-		super(0);
-		r1=rail1;
-		r2=rail2;
+		super(0,rail1,rail2);
+		
 	}
 
 	
